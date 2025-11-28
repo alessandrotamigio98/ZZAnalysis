@@ -122,8 +122,10 @@ elif SampleToRun == "MCsync_2018Rereco" :
 ################################################################################
 elif SampleToRun == "MC2022" :
     # 2022 MC sample
-    setConf("SAMPLENAME", "ggH125")
-    setConf("DATA_TAG", "post_EE")
+    setConf("SAMPLENAME", "ggH126")
+ #   setConf("SAMPLENAME", "ggH125")
+    setConf("DATA_TAG", "pre_EE")
+#    setConf("DATA_TAG", "post_EE")
     setConf("XSEC", 52.23*0.0002745)
     setConf("LEPTON_SETUP", 2022)
     setConf("IsMC", True)
@@ -131,7 +133,8 @@ elif SampleToRun == "MC2022" :
     setConf("APPLY_QCD_GGF_UNCERT", True) # for ggH
 #   setConf("MUON_ID_BYMVA", True)
     setConf("fileNames",[
-        "/store/mc/Run3Summer22EENanoAODv12/GluGluHtoZZto4L_M-125_TuneCP5_13p6TeV_powheg2-JHUGenV752-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v2/2540000/25c8f5ff-9de0-4a0c-9e2f-757332ad392f.root",
+         "/store/mc/Run3Summer22NanoAODv12/GluGluHtoZZto4L_M-126_TuneCP5_13p6TeV_powheg2-JHUGenV752-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/40000/69e2bafc-283b-498a-8bf4-54537d6a1353.root"
+#        "/store/mc/Run3Summer22EENanoAODv12/GluGluHtoZZto4L_M-125_TuneCP5_13p6TeV_powheg2-JHUGenV752-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v2/2540000/25c8f5ff-9de0-4a0c-9e2f-757332ad392f.root",
 #        "/store/mc/Run3Summer22EENanoAODv12/GluGluHtoZZto4L_M-125_TuneCP5_13p6TeV_powheg2-JHUGenV752-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v2/2530000/8f306f2b-1284-41b8-a98f-744267f64b9c.root",
         ])
 #    json = {"1": [[1245, 1245],[1306, 1306],[1410, 1410],[1692, 1692],[1903, 1903],[1910, 1910],[1915, 1915],[1927, 1927],[1939, 1939],[1940, 1940],[1944, 1944],[1945, 1945],[1956, 1956],[1960, 1960],[1965, 1965],[1967, 1967],[1968, 1968],[1969, 1969],[2104, 2104]]}

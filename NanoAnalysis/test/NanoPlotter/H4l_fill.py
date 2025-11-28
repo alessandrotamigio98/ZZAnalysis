@@ -10,7 +10,9 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collect
 from ZZAnalysis.NanoAnalysis.tools import getLeptons, get_genEventSumw
 
 
-pathMC = "/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIII_byZ1Z2/240820/2022EE/"
+# pathMC = "/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIII_byZ1Z2/240820/2022EE/"
+pathMC = "/eos/home-a/atamigio/ZZ_VBS_Analysis/Productions/PROD_samplesNano_2022EE_MC_c10cce63/AAAOK/"
+# pathMC = "/eos/home-a/atamigio/ZZ_VBS_Analysis/CMSSW_14_1_6/src/ZZAnalysis/NanoAnalysis/test/prod/PROD_samplesNano_2023preBPix_MC_c10cce63/AAAOK/"
 pathDATA = "/eos/cms/store/group/phys_higgs/cmshzz4l/cjlst/RunIII_byZ1Z2/240820/2022EE/"
 
 
@@ -60,13 +62,15 @@ def fillHistos(samplename, filename) :
         genEventSumw = get_genEventSumw(f, maxEntriesPerSample)
 
     iEntry=0
+    nAttesi=0
+    sum_overallEventW=0
     printEntries=max(5000,nEntries/10)
     while iEntry<nEntries and event.GetEntry(iEntry):
         iEntry+=1
         if iEntry%printEntries == 0 : print("Processing", iEntry)
 
         bestCandIdx = event.bestCandIdx
-
+ 
         # Check that the event contains a selected candidate, and that
         # passes the required triggers (which is necessary for samples
         # processed with TRIGPASSTHROUGH=True)
@@ -83,8 +87,17 @@ def fillHistos(samplename, filename) :
             # [Z1l1, Z2l2, Z2l1, Z2l2]
             #leps = getLeptons(theZZ, event)
             #print(leps[3].pt)
-        
+            sum_overallEventW += event.overallEventWeight
+            nAttesi += weight
+            print(nAttesi)
+            print(genEventSumw)
+            print(sum_overallEventW)
+                    
     f.Close()
+    print(nAttesi)
+    print(nEntries)
+    print(sum_overallEventW)
+
     
     return h_ZZMass2,h_ZZMass4,h_ZZMass10
 
@@ -108,8 +121,9 @@ def runMC():
         # dict(name = "ggTo2mu2tau",filename = pathMC+"ggTo2mu2tau_Contin_MCFM701/ZZ4lAnalysis.root"),
 
         # dict(name = "ZZTo4l",filename = pathMC+"ZZTo4lext1/ZZ4lAnalysis.root"),
+        dict(name = "ZZTo4l",filename = pathMC+"ZZZ/ZZ4lAnalysis.root"),
         
-        dict(name = "ggH125",filename = pathMC+"ggH125/ZZ4lAnalysis.root"),
+        # dict(name = "ggH125",filename = pathMC+"ggH125/ZZ4lAnalysis.root"),
         # dict(name = "VBF125",filename = pathMC+"VBFH125/ZZ4lAnalysis.root"),
         # dict(name = "WplusH125",filename = pathMC+"WplusH125/ZZ4lAnalysis.root"),
         # dict(name = "WminusH125",filename = pathMC+"WminusH125/ZZ4lAnalysis.root"),
