@@ -5,6 +5,7 @@ set list = ( */*.root */*.corrupted */*.recovered */*.gz */*.txt */core* */jobid
 
 foreach f ( ${list} )
     if ( -e $f ) then
+    	echo "Cancello: $f"
 	rm -r $f
     endif
 end

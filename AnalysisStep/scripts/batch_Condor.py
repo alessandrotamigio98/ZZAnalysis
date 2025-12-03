@@ -11,6 +11,7 @@ import math
 import pprint
 import subprocess
 from datetime import date
+from datetime import datetime 
 from optparse import OptionParser
 from ZZAnalysis.AnalysisStep.eostools import *
 from ZZAnalysis.AnalysisStep.readSampleInfo import *
@@ -303,12 +304,13 @@ class MyBatchManager:
             sys.exit(1)
 
         # Handle output directory
-        outputDir = self.options_.outputDir
+        outputDir = self.options_.outputDir 
         if outputDir==None:
 #             today = date.today()
+#	      dateTime = datetime.now()
 #             outputDir = 'OutCmsBatch_%s' % today.strftime("%d%h%y_%H%M")
             gitrevision = subprocess.check_output(['git', "rev-parse", "--short", "HEAD"]) #revision of the git area where the command is exectuted
-            outputDir = "PROD_" + csvfile.replace('.csv','') + "_"+gitrevision.decode('utf-8').rstrip()
+            outputDir = "PROD_" + csvfile.replace('.csv','') + "_" + gitrevision.decode('utf-8').rstrip() 
             print('output directory not specified, using %s' % outputDir)
         self.outputDir_ = os.path.abspath(outputDir)
         self.workingDir = str(self.outputDir_)
